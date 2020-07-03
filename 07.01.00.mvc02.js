@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 8080
+const PORT = process.env.PORT || 5000
 var session = require('express-session')
 var path = require('path');
 var router = express.Router();  
@@ -33,7 +33,11 @@ app.use(session(sess));
 /// ***************** ***************** Config DB CONNECTION
 const MongoClient = require('mongodb').MongoClient;
 const mongosee = require('mongoose');
+/// ***************** Database & Bảng dữ liệu cần Truy vấn
+const uri = dbConfig.URI;
+const NameDataBase =  dbConfig.DBname;
 
+/// ***************** ***************** *****************
 /// *****************  Models
 const Product = require('./models/product');
 const Staff = require('./models/staff');
@@ -49,7 +53,7 @@ const uri = "mongodb+srv://db03:MJolOKemr4zdzF3E@shopping.v6trt.mongodb.net/ATN_
 
 /// ***************** ***************** *****************
 /// ***************** Database & Bảng dữ liệu cần Truy vấn
-const NameDataBase =  "ATN_Company"; // "CloudDB";
+
 var xflag = 0;
 var vResult = [];
 var accLogin = null;
